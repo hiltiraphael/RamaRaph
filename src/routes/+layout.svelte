@@ -1,6 +1,3 @@
-export const prerender = true;
-export const trailingSlash = 'always';
-	
 <script>
 	import favicon from '$lib/assets/favicon.svg';
 
