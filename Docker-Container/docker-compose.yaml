@@ -1,0 +1,9 @@
+services:
+  sveltekit-app:
+    build:
+      context: ..
+      dockerfile: Docker-Container\Dockerfile
+    container_name: sveltekit_web
+    ports:
+      - "3000:3000"
+    restart: always
