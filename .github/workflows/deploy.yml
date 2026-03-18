@@ -1,4 +1,4 @@
-name: Docker Build & Deploy
+name: Publish Docker Image to GHCR
 
 on:
   push:
@@ -41,16 +41,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          # Falls dein Dockerfile im Unterordner liegt (wie zuvor besprochen):
           file: ./Docker-Container/Dockerfile 
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-  deploy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to Server via SSH
-        # Hier würdest du deinen Server-Befehl einfügen, z.B. per Appleboy SSH Action
-        run: echo "Hier den Befehl einfügen, um 'docker compose pull && docker compose up -d' auf dem Server auszuführen."
