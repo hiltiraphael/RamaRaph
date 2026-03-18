@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-node'; // Geändert von static zu node
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -6,12 +6,13 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter({
-			fallback: '404.html' // Erzeugt eine 404.html für GitHub Pages
-		}),
+		// Der Node-Adapter braucht keine speziellen Optionen für den Start
+		adapter: adapter(),
+
 		paths: {
-			// Ersetze RamaRaph durch deinen exakten Repository-Namen
-			base: process.env.NODE_ENV === 'production' ? '/RamaRaph' : '',
+			// Wenn du die Seite direkt über die IP aufrufst, 
+			// sollte der base-Pfad leer sein ('').
+			base: '',
 		}
 	}
 };
